@@ -1,4 +1,6 @@
 
+//#define data ll
+
 struct data{
   //data as per needed in question (data present in the node of the segment tree)
 	ll x;
