@@ -42,4 +42,6 @@ void init( ){
     tree.resize(n+1);
 }
 
+//good q: https://codeforces.com/contest/609/problem/E
+//https://codeforces.com/contest/609/submission/186681679
 
