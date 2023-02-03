@@ -1,5 +1,5 @@
 
- // 1-based indexed segment tree , with last element of range of element included
+ // 0-based indexed segment tree , with last element of range of element included
 #define var ll
  
 // struct var{
@@ -139,7 +139,7 @@ struct seg_tree{
 		var sum2 = calc(l , r , mid+1 , rx , 2*node+2);
 		return merge(sum1 , sum2);
 	}
-	
+	//0 BASED INDEXED , QUERY, AND STUFF WILL BE FROM 0 to n-1, if q is 1 to n, then l--, r--, REMEMBER U DUMB
 	 void build( vll &arr ){
 		build(arr , 0 , size-1 , 0);
 	}
@@ -152,7 +152,6 @@ struct seg_tree{
 	void set(ll i , ll v){
 		set(0 , size-1 , v, 0 , i);
 	}
-	
 	void modify(ll l , ll r , ll v){
 		modify(l , r ,v , 0 , 0 , size-1);
 	}
