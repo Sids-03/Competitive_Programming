@@ -3,9 +3,9 @@
   vll d , parent;
   
   void dijkstra(ll source){
-  	adj.resize(n+1);
-  	parent.resize(n+1);
-  	d.resize(n+1);
+  	parent.assign(101,0);
+  	d.assign(101 , INF);
+    d[source] =0;
       priority_queue<pll> pq;
       pq.push({0,source});
        while(!pq.empty()){
