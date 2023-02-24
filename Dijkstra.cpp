@@ -3,10 +3,10 @@
   vll d , parent;
   
   void dijkstra(ll source){
-  	parent.assign(101,0);
-  	d.assign(101 , INF);
+  	parent.assign(n+1,0);
+  	d.assign(n+1 , INF);
     d[source] =0;
-      priority_queue<pll> pq;
+      priority_queue<pll, vector<pll>, greater<pll>> pq;
       pq.push({0,source});
        while(!pq.empty()){
            ll vert = pq.top().second;
