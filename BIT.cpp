@@ -1,3 +1,4 @@
+
 struct BIT{
     ll N;
     vll bit;
@@ -6,22 +7,14 @@ struct BIT{
         N = n;
         bit.assign(n+1 , 0);
     }
-    void update(ll ind , ll val){
-        while(ind <= N){
-            bit[ind]+= val;
-            ind += (ind & (-ind));
-        }
+    void add(int x, int k) {
+        for (; x <= N; x += x & -x) bit[x] += k;
     }
-    ll psum(ll ind){
-        ll ans = 0;
-        while(ind > 0){
-            ans += bit[ind];
-            ind -= (ind & (-ind));
-        }
-        return ans;
-    }
-    ll rsum(ll l , ll r){
-        return psum(r)-psum(l-1);
+    int rsum(int l, int r) {
+        int res = 0;
+        for (int x = l - 1; x; x -= x & -x) res -= bit[x];
+        for (int x = r; x; x -= x & -x) res += bit[x];
+        return res;
     }
     ll find(ll val){
         ll curr = 0  , prevsum = 0;
