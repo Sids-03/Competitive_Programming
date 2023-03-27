@@ -45,3 +45,5 @@ struct DSU{
 
 // Question : https://codeforces.com/problemset/problem/1609/D
 // soln: https://codeforces.com/contest/1609/submission/174662908
+//Question: https://codeforces.com/gym/103055/problem/G (2D DSU)
+//soln : https://codeforces.com/gym/103055/submission/199426552
