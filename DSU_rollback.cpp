@@ -6,6 +6,7 @@ vll sol;
 struct DSU{
     vector<pll> st[4*maxN];
     vll p;
+    //path compression wont work during rollbacks, so rank compression
     vll rank;
     // e is basically storing the states, where .first is storing the present, and .second is storing the past to the moment where it was changed(cool)
     vector<pair<int&, int>> e;
@@ -40,7 +41,7 @@ struct DSU{
         e.pb({rank[v] , rank[v]});
         rank[v] += rank[u];
     }
-
+    // update the range of queries from the index it starts to the index it ends [l,r] and total range will be [0,Q]
     void upd(int node , int l , int r , int lx, int rx, pll p){
         if(lx >= r || rx <= l){
             return;
@@ -67,6 +68,8 @@ struct DSU{
             }
         }
     }
+
+    //dfs in the interval tree
 
     void build(int node, int l , int r){
         for(auto it: st[node]){
