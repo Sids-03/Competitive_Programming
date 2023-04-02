@@ -37,6 +37,7 @@ void fft(vector<cd> &a, bool inv){
             z /= N;
 }
  
+//a = multiply(a,b) means a = a * b
  
 vll multiply(vll a , vll b){
     ll n=1; vll v;
