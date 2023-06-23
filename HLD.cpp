@@ -108,3 +108,6 @@ struct heavy_light_decomp{
     }
 };
 
+// Segment tree (Non commutative): https://codeforces.com/contest/1843/submission/210728065
+// Lazy Segment tree : https://codeforces.com/contest/696/submission/210670196
+
