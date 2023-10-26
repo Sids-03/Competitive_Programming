@@ -26,6 +26,11 @@ typedef long double lld;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
+#ifndef ONLINE_JUDGE
+#include "/Users/sid/cp/Templates/debug.h"
+#else
+#define dbg(x...)
+#endif
 /*---------------------------------------------------------------------------------------------------------------------------*/
 ll gcd(ll a, ll b) {if (b > a) {return gcd(b, a);} if (b == 0) {return a;} return gcd(b, a % b);}
 ll expo(ll a, ll b, ll mod) {ll res = 1; while (b > 0) {if (b & 1)res = (res * a) % mod; a = (a * a) % mod; b = b >> 1;} return res;}
@@ -37,14 +42,12 @@ vector<ll> sieve(int n) {int*arr = new int[n + 1](); vector<ll> vect; for (int i
 ll phin(ll n) {ll number = n; if (n % 2 == 0) {number /= 2; while (n % 2 == 0) n /= 2;} for (ll i = 3; i <= sqrt(n); i += 2) {if (n % i == 0) {while (n % i == 0)n /= i; number = (number / i * (i - 1));}} if (n > 1)number = (number / n * (n - 1)) ; return number;} //O(sqrt(N))
 ll uid(ll l, ll r) {return uniform_int_distribution<ll>(l, r)(rng);} 
 /*--------------------------------------------------------------------------------------------------------------------------*/
-
 //const int mod = 1e9 + 7;
 //const int mod = 998244353; 
 
 
 void solve()
 {
-   
 
 }
 
@@ -56,13 +59,17 @@ cout.tie(0);
 
 
 ll t = 1;
-cin >> t;
+// cin >> t;
 for(int i = 1 ; i <= t ; i++){
 //google(i);
 solve();
 }
 return 0;
 }
+
+
+
+
 
 
 
