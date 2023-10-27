@@ -16,7 +16,7 @@ struct DFST{
         graph[v].pb(u);
     }
     void dfs(int node, int p){
-        par[node] = par;
+        par[node] = p;
         dep[node] = dep[p]+1;
         for(auto it: graph[node]){
             if(!dep[it]){
