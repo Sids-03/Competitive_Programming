@@ -1,7 +1,8 @@
 struct DFST{
     ll n, m;
-    vector<vector<int>> graph, tree, back_in, back_out, dep, par;
+    vector<vector<int>> graph, tree, back_in, back_out;
     vector<bool>vis;
+    vector<int> dep, par;
 
     DFST(int _n, int _m){
         n = _n, m = _m;
