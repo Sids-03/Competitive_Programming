@@ -1,60 +1,58 @@
-#define maxn 2
-struct Mat{
-    int mat[maxn][maxn];
-    int row,col;
-    Mat(int _row=2,int _col=2){
-        row=_row;col=_col;
-        mat[0][0]=1;mat[0][1]=0;
-        mat[1][0]=0;mat[1][1]=1;
-    }
-    bool identity(){
-        if(mat[0][0]==1&&mat[0][1]==0&&mat[1][0]==0&&mat[1][1]==1)return 1;
-        else return 0;
-    }
+ 
+const int MOD = 1e9 + 7;
+const long long MOD2 = static_cast<long long>(MOD) * MOD;
+ 
+struct Matrix
+{
+	vector< vector<int> > mat;
+	int n_rows, n_cols;
+ 
+	Matrix() {}
+ 
+	Matrix(vector< vector<int> > values): mat(values), n_rows(values.size()),
+		n_cols(values[0].size()) {}
+ 
+	static Matrix identity_matrix(int n)
+	{
+		vector< vector<int> > values(n, vector<int>(n, 0));
+		for(int i = 0; i < n; i++)
+			values[i][i] = 1;
+		return values;
+	}
+ 
+	Matrix operator*(const Matrix &other) const 
+	{
+		int n = n_rows, m = other.n_cols;
+		vector< vector<int> > result(n_rows, vector<int>(n_cols, 0));
+		for(int i = 0; i < n; i++)
+			for(int j = 0; j < m; j++) {
+				long long tmp = 0;
+				for(int k = 0; k < n_cols; k++) {
+					tmp += mat[i][k] * 1ll * other.mat[k][j];
+					while(tmp >= MOD2)
+						tmp -= MOD2;
+				}
+				result[i][j] = tmp % MOD;
+			}
+ 
+		return move(Matrix(move(result)));
+	}
+ 
+	inline bool is_square() const
+	{
+		return n_rows == n_cols;
+	}
 };
- 
-Mat mod_add(Mat a,Mat b,int p=MOD){
-    Mat ans(a.row,b.col);
-    memset(ans.mat,0,sizeof(ans.mat));
-    for(int i=0;i<a.row;i++)      
-        for(int j=0;j<a.col;j++){
-            ans.mat[i][j]=a.mat[i][j]+b.mat[i][j];
-            ans.mat[i][j]%=p;
-        }
-    return ans;
+Matrix pw(Matrix a,int p){
+	Matrix result = Matrix::identity_matrix(a.n_cols);
+	while (p > 0) {
+		if (p & 1)
+			result = a * result;
+		a = a * a;
+		p >>= 1;
+	}
+	return result;
 }
- 
-Mat mod_mul(Mat a,Mat b,int p=MOD){
-    Mat ans(a.row,b.col);
-    memset(ans.mat,0,sizeof(ans.mat));
-    for(int i=0;i<ans.row;i++)      
-        for(int k=0;k<a.col;k++)
-            if(a.mat[i][k])
-                for(int j=0;j<ans.col;j++)
-                {
-                    ans.mat[i][j]=(ans.mat[i][j]+1LL*a.mat[i][k]*b.mat[k][j])%p;
-                }
-    return ans;
-}
-Mat mod_pow(Mat a,int k,int p=MOD) {
-    Mat ans(a.row,a.col);
-    for(int i=0;i<a.row;i++)for(int j=0;j<a.col;j++)ans.mat[i][j]=(i==j);
-    while(k){
-        if(k&1)ans=mod_mul(ans,a,p);
-        a=mod_mul(a,a,p);
-        k>>=1;
-    }
-    return ans;
-}
- 
-Mat fib(int n){
-    Mat ans(2,2);
-    ans.mat[0][1]=1;
-    ans.mat[1][0]=1;
-    ans.mat[1][1]=0;
-    return mod_pow(ans,n,MOD);
-}
-
 
 //Question: https://codeforces.com/problemset/problem/718/C (Seg_tree+Lazy+Matrix expo)
 //https://codeforces.com/contest/718/submission/187662403
