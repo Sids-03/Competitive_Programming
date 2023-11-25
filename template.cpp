@@ -27,7 +27,7 @@ typedef long double lld;
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
 #ifndef ONLINE_JUDGE
-#include "/Users/sid/cp/Templates/debug.h"
+#include "/Users/templates/debug.h"
 #else
 #define dbg(x...)
 #endif
