@@ -59,7 +59,7 @@ cout.tie(0);
 
 
 ll t = 1;
-// cin >> t;
+cin >> t;
 for(int i = 1 ; i <= t ; i++){
 //google(i);
 solve();
