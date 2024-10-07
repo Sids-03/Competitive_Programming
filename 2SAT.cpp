@@ -48,12 +48,16 @@ struct TwoSat {
 	}
 
 	bool solve() {
+        cout << N << endl;
 		values.assign(N, -1);
 		val.assign(2*N, 0); comp = val;
         for(int i = 0 ; i < 2*N ; i ++) if (!comp[i]) dfs(i);
 		for(int i = 0 ; i < N ; i ++) if (comp[2*i] == comp[2*i+1]) return 0;
 		return 1;
 	}
+    // x,y = {T, F}, {F, T}
+    void solverxor(int x, int y) {
+		either(x,y);
+		atMostOne({x,y});
+	}
 };
-
-// https://codeforces.com/contest/1903/submission/284728593
