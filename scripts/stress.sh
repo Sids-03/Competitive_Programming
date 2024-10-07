@@ -9,6 +9,7 @@ for ((testNum=0;testNum<$4;testNum++))
 do
     ./$3.o > input
     ./$2.o < input > outSlow
+    # python3 $2.py < input > outSlow
     ./$1.o < input > outWrong
     echo "Test case ${testNum} passed"
     if !(cmp -s "outWrong" "outSlow")

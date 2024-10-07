@@ -11,7 +11,7 @@ struct TwoSat {
 		return N++;
 	}
 
-  //either f is true or j is true, but both can't be true together
+    //either f is true or j is true, but both can't be true together
 	void either(int f, int j) {
 		f = max(2*f, -1-2*f);
 		j = max(2*j, -1-2*j);
@@ -48,7 +48,6 @@ struct TwoSat {
 	}
 
 	bool solve() {
-        cout << N << endl;
 		values.assign(N, -1);
 		val.assign(2*N, 0); comp = val;
         for(int i = 0 ; i < 2*N ; i ++) if (!comp[i]) dfs(i);
