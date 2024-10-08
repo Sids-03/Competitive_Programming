@@ -11,15 +11,17 @@ struct TwoSat {
 		return N++;
 	}
 
-    //either f is true or j is true, but both can't be true together
+    // f or j : {T, F}, {F, T}, {T, T}
 	void either(int f, int j) {
 		f = max(2*f, -1-2*f);
 		j = max(2*j, -1-2*j);
 		gr[f].push_back(j^1);
 		gr[j].push_back(f^1);
 	}
+    // sets value of x to true
 	void setValue(int x) { either(x, x); }
 
+    // at most one value of the vector li will be true (x1+x2+x3+x4.. <= 1)
 	void atMostOne(const vector<int>& li) { // (optional)
 		if ((int)li.size() <= 1) return;
 		int cur = ~li[0];
@@ -54,7 +56,7 @@ struct TwoSat {
 		for(int i = 0 ; i < N ; i ++) if (comp[2*i] == comp[2*i+1]) return 0;
 		return 1;
 	}
-    // x,y = {T, F}, {F, T}
+    // x,y = {T, F}, {F, T} ; For {T, T}, {F, F} do x , ~y
     void solverxor(int x, int y) {
 		either(x,y);
 		atMostOne({x,y});
