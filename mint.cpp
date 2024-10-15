@@ -1,11 +1,10 @@
-//use Mint and value at ans.x
 //Credit: Um_nik , Link: https://codeforces.com/contest/1770/submission/187276330
 
+#define ull unsigned long long
+mt19937_64 rng(chrono::steady_clock::now().time_since_epoch().count());
 ll myRand(ll B) {
 	return (ull)rng() % B;
 }
-
- 
 const ll MOD = 998244353;
 template<ll mod = MOD> struct mint { // 1000000007  1000000009
 	ll x;
